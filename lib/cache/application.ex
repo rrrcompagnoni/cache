@@ -7,7 +7,14 @@ defmodule Cache.Application do
 
   @impl true
   def start(_type, _args) do
-    children = []
+    children = [
+      {Cache, []},
+      {Cache.Jobs.Storage, []},
+      {DynamicSupervisor, name: Cache.RefreshScheduler.DynamicSupervisor, strategy: :one_for_one},
+      {DynamicSupervisor,
+       name: Cache.Entries.DynamicSupervisor, strategy: :one_for_one, restart: :transient},
+      {Task.Supervisor, name: Cache.TaskSupervisor}
+    ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
