@@ -14,7 +14,7 @@ It is an experiment, do not use it in production.
 ```elixir
 def deps do
   [
-    {:cache, git: "https://github.com/rrrcompagnoni/cache.git", tag: "v1.0.0"}
+    {:cache, git: "https://github.com/rrrcompagnoni/cache.git", tag: "1.0.0"}
   ]
 end
 ```
